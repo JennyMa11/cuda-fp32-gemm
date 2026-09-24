@@ -39,7 +39,8 @@ make env
 
 The GEMM implementation computes dense row-major
 `C = alpha * A * B + beta * C`. It contains three shape-aware fast kernels,
-an arbitrary-size edge kernel, and a cuBLAS benchmark/validation harness.
+four bounds-checked tail kernels for arbitrary shapes, a compact edge kernel,
+and a cuBLAS benchmark/validation harness.
 
 ```bash
 # Ampere (change CUDA_ARCH for another GPU)
@@ -51,6 +52,12 @@ make test CUDA_ARCH=sm_86
 # Full 38-shape benchmark and CSV output
 CUDA_ARCH=sm_86 make gemm
 WARMUP=5 ITERS=20 ./scripts/profile_gemm.sh
+```
+
+The tiling and bounds-check logic can be checked without a GPU:
+
+```bash
+python3 scripts/verify_tiling.py
 ```
 
 The benchmark defaults to pedantic FP32 cuBLAS so the baseline does not silently

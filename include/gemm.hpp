@@ -8,6 +8,10 @@ enum class KernelKind {
     kFast128x128,
     kFast128x64,
     kFast64x128,
+    kTail128x128,
+    kTail128x64,
+    kTail64x128,
+    kTail64x64,
     kEdge,
 };
 

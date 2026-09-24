@@ -8,3 +8,4 @@ build/
 *.log
 *.tmp
 __pycache__/
+/docs/interview-notes.md
